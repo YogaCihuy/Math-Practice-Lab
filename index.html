@@ -14,39 +14,74 @@
   <div class="nav">
     <button class="active" data-nav="belajar">📘 Belajar</button>
     <button data-nav="latihan">🎯 Latihan Soal</button>
+    <button data-nav="statistik">📊 Statistik</button>
+    <button id="soundToggle" class="sound-btn" title="Nyalakan/matikan suara">🔊</button>
   </div>
 
   <!-- ===================== BELAJAR ===================== -->
   <section id="belajar" class="active">
     <div class="tabs">
-      <button class="active" data-tab="basic">Perkalian Basic</button>
-      <button data-tab="trik">Perkalian Cepat</button>
+      <button class="active" data-tab="basic">Perkalian</button>
+      <button data-tab="pembagian">Pembagian</button>
+      <button data-tab="pangkat">Pangkat-pangkatan</button>
       <button data-tab="akar">Akar</button>
       <button data-tab="faktorial">Faktorial</button>
     </div>
 
     <div id="tab-basic" class="tab-content">
       <div class="card">
-        <h2>Perkalian Basic — Penjumlahan Berulang</h2>
+        <h2>Perkalian — Penjumlahan Berulang</h2>
         <p>Perkalian pada dasarnya adalah <b>penjumlahan berulang</b>. A × B artinya A dijumlahkan sebanyak B kali.</p>
         <div class="formula">5 × 5 = 5 + 5 + 5 + 5 + 5 = 25</div>
         <div class="example"><b>Contoh lain:</b> 4 × 3 = 4 + 4 + 4 = 12</div>
         <div class="example"><b>Contoh lain:</b> 7 × 2 = 7 + 7 = 14</div>
         <p>Konsep ini penting supaya kamu paham <i>kenapa</i> tabel perkalian bisa terbentuk, bukan cuma hafalan.</p>
       </div>
-    </div>
-
-    <div id="tab-trik" class="tab-content" style="display:none">
       <div class="card">
-        <h2>Trik 1: Perkalian dengan 9</h2>
+        <h2>Trik: Perkalian dengan 9</h2>
         <p>Untuk A × 9, gunakan rumus:</p>
         <div class="formula">A × 9 = (A × 10) − A</div>
         <div class="example"><b>Contoh:</b> 5 × 9 = (5 × 10) − 5 = 50 − 5 = <b>45</b></div>
         <div class="example"><b>Contoh:</b> 8 × 9 = (8 × 10) − 8 = 80 − 8 = <b>72</b></div>
         <p>Trik ini cepat karena kali 10 tinggal tambah angka 0 di belakang.</p>
       </div>
+    </div>
+
+    <div id="tab-pembagian" class="tab-content" style="display:none">
       <div class="card">
-        <h2>Trik 2: Kuadrat Angka Berakhiran 5</h2>
+        <h2>Pembagian Basic — Kebalikan dari Perkalian</h2>
+        <p>Pembagian adalah <b>kebalikan (invers)</b> dari perkalian, dan juga bisa dianggap sebagai <b>pengurangan berulang</b>.</p>
+        <div class="formula">20 ÷ 4 = 5, karena 4 × 5 = 20</div>
+        <div class="example"><b>Pengurangan berulang:</b> 20 − 4 − 4 − 4 − 4 − 4 = 0 (dikurangi 5 kali) → 20 ÷ 4 = 5</div>
+        <p>Cara cek jawaban pembagian: kalikan lagi hasilnya dengan pembaginya, hasilnya harus balik ke angka awal.</p>
+      </div>
+      <div class="card">
+        <h2>Trik 1: Bagi 5</h2>
+        <p>Untuk N ÷ 5, kalikan dulu N dengan 2, lalu bagi 10 (geser koma / hapus satu angka nol):</p>
+        <div class="formula">N ÷ 5 = (N × 2) ÷ 10</div>
+        <div class="example"><b>Contoh:</b> 65 ÷ 5 → 65 × 2 = 130 → 130 ÷ 10 = <b>13</b></div>
+        <div class="example"><b>Contoh:</b> 240 ÷ 5 → 240 × 2 = 480 → 480 ÷ 10 = <b>48</b></div>
+      </div>
+      <div class="card">
+        <h2>Trik 2: Bagi 4</h2>
+        <p>Bagi 4 sama saja dengan bagi 2 dua kali berturut-turut (lebih gampang secara mental):</p>
+        <div class="formula">N ÷ 4 = (N ÷ 2) ÷ 2</div>
+        <div class="example"><b>Contoh:</b> 48 ÷ 4 → 48 ÷ 2 = 24 → 24 ÷ 2 = <b>12</b></div>
+        <div class="example"><b>Contoh:</b> 132 ÷ 4 → 132 ÷ 2 = 66 → 66 ÷ 2 = <b>33</b></div>
+      </div>
+    </div>
+
+    <div id="tab-pangkat" class="tab-content" style="display:none">
+      <div class="card">
+        <h2>Pangkat — Perkalian Berulang</h2>
+        <p>Pangkat adalah <b>perkalian berulang</b>. A pangkat n (Aⁿ) artinya A dikalikan dengan dirinya sendiri sebanyak n kali.</p>
+        <div class="formula">4³ = 4 × 4 × 4 = 64</div>
+        <div class="example"><b>Contoh lain:</b> 2⁵ = 2 × 2 × 2 × 2 × 2 = 32</div>
+        <div class="example"><b>Contoh lain:</b> 6² = 6 × 6 = 36</div>
+        <p>Pangkat 2 disebut <i>kuadrat</i>, pangkat 3 disebut <i>kubik/pangkat tiga</i>.</p>
+      </div>
+      <div class="card">
+        <h2>Trik: Kuadrat Angka Berakhiran 5</h2>
         <p>Untuk angka berbentuk A5 (puluhan A, satuan 5), rumus kuadratnya:</p>
         <div class="formula">A5² = [A × (A+1)] lalu tempel "25" di belakang</div>
         <div class="example"><b>Contoh:</b> 25² → A=2 → 2 × 3 = 6 → tempel 25 → <b>625</b></div>
@@ -96,6 +131,8 @@
           <label>Kategori</label>
           <select id="qCategory">
             <option value="perkalian">Perkalian</option>
+            <option value="pembagian">Pembagian</option>
+            <option value="pangkat">Pangkat</option>
             <option value="akar">Akar</option>
             <option value="faktorial">Faktorial</option>
           </select>
@@ -144,7 +181,18 @@
       <button class="btn secondary" id="retryBtn">Coba Lagi</button>
     </div>
   </section>
+
+  <!-- ===================== STATISTIK ===================== -->
+  <section id="statistik">
+    <div class="card">
+      <h2>📊 Statistik Belajar Kamu</h2>
+      <p style="color:var(--muted);font-size:.9rem">Data disimpan lokal di browser ini (localStorage), berdasarkan hasil Latihan Soal yang sudah kamu kerjakan.</p>
+      <div id="statsGrid" class="stats-grid"></div>
+      <button class="btn secondary" id="resetStatsBtn">🗑️ Reset Statistik</button>
+    </div>
+  </section>
 </div>
+<div id="confetti-layer"></div>
 
 <script src="script.js"></script>
 </body>
