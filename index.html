@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MathTrik - Belajar Matematika Cepat</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>🧮 MathTrik</h1>
+  <p class="sub">Belajar Perkalian, Akar & Faktorial dari dasar sampai trik cepat</p>
+
+  <div class="nav">
+    <button class="active" data-nav="belajar">📘 Belajar</button>
+    <button data-nav="latihan">🎯 Latihan Soal</button>
+  </div>
+
+  <!-- ===================== BELAJAR ===================== -->
+  <section id="belajar" class="active">
+    <div class="tabs">
+      <button class="active" data-tab="basic">Perkalian Basic</button>
+      <button data-tab="trik">Perkalian Cepat</button>
+      <button data-tab="akar">Akar</button>
+      <button data-tab="faktorial">Faktorial</button>
+    </div>
+
+    <div id="tab-basic" class="tab-content">
+      <div class="card">
+        <h2>Perkalian Basic — Penjumlahan Berulang</h2>
+        <p>Perkalian pada dasarnya adalah <b>penjumlahan berulang</b>. A × B artinya A dijumlahkan sebanyak B kali.</p>
+        <div class="formula">5 × 5 = 5 + 5 + 5 + 5 + 5 = 25</div>
+        <div class="example"><b>Contoh lain:</b> 4 × 3 = 4 + 4 + 4 = 12</div>
+        <div class="example"><b>Contoh lain:</b> 7 × 2 = 7 + 7 = 14</div>
+        <p>Konsep ini penting supaya kamu paham <i>kenapa</i> tabel perkalian bisa terbentuk, bukan cuma hafalan.</p>
+      </div>
+    </div>
+
+    <div id="tab-trik" class="tab-content" style="display:none">
+      <div class="card">
+        <h2>Trik 1: Perkalian dengan 9</h2>
+        <p>Untuk A × 9, gunakan rumus:</p>
+        <div class="formula">A × 9 = (A × 10) − A</div>
+        <div class="example"><b>Contoh:</b> 5 × 9 = (5 × 10) − 5 = 50 − 5 = <b>45</b></div>
+        <div class="example"><b>Contoh:</b> 8 × 9 = (8 × 10) − 8 = 80 − 8 = <b>72</b></div>
+        <p>Trik ini cepat karena kali 10 tinggal tambah angka 0 di belakang.</p>
+      </div>
+      <div class="card">
+        <h2>Trik 2: Kuadrat Angka Berakhiran 5</h2>
+        <p>Untuk angka berbentuk A5 (puluhan A, satuan 5), rumus kuadratnya:</p>
+        <div class="formula">A5² = [A × (A+1)] lalu tempel "25" di belakang</div>
+        <div class="example"><b>Contoh:</b> 25² → A=2 → 2 × 3 = 6 → tempel 25 → <b>625</b></div>
+        <div class="example"><b>Contoh:</b> 45² → A=4 → 4 × 5 = 20 → tempel 25 → <b>2025</b></div>
+        <div class="example"><b>Contoh:</b> 95² → A=9 → 9 × 10 = 90 → tempel 25 → <b>9025</b></div>
+      </div>
+    </div>
+
+    <div id="tab-akar" class="tab-content" style="display:none">
+      <div class="card">
+        <h2>Akar Kuadrat (√)</h2>
+        <p>Akar kuadrat dari N adalah angka yang jika dikalikan dengan dirinya sendiri menghasilkan N.</p>
+        <div class="formula">√25 = 5, karena 5 × 5 = 25</div>
+        <h3>Trik Tebak Cepat Akar</h3>
+        <p>Hafalkan kuadrat 1–15, lalu lihat digit terakhir untuk menebak digit terakhir hasil akar:</p>
+        <div class="example">Angka berakhiran <b>1</b> → akarnya berakhiran 1 atau 9</div>
+        <div class="example">Angka berakhiran <b>4</b> → akarnya berakhiran 2 atau 8</div>
+        <div class="example">Angka berakhiran <b>9</b> → akarnya berakhiran 3 atau 7</div>
+        <div class="example">Angka berakhiran <b>6</b> → akarnya berakhiran 4 atau 6</div>
+        <div class="example">Angka berakhiran <b>5</b> → akarnya pasti berakhiran 5 (pakai trik kuadrat A5 secara terbalik!)</div>
+      </div>
+    </div>
+
+    <div id="tab-faktorial" class="tab-content" style="display:none">
+      <div class="card">
+        <h2>Faktorial (n!)</h2>
+        <p>Faktorial dari n adalah hasil kali semua bilangan bulat positif dari 1 sampai n.</p>
+        <div class="formula">n! = n × (n−1) × (n−2) × ... × 1</div>
+        <div class="example"><b>Contoh:</b> 5! = 5 × 4 × 3 × 2 × 1 = <b>120</b></div>
+        <div class="example"><b>Catatan:</b> 0! = 1 (kesepakatan matematika)</div>
+        <h3>Multifaktorial (n‼ dan seterusnya)</h3>
+        <p>Multifaktorial mengalikan angka dengan <i>loncat</i> sebanyak k langkah, ditulis n!ᵏ. Bentuk paling umum adalah double factorial (n‼), yaitu loncat 2:</p>
+        <div class="formula">n‼ = n × (n−2) × (n−4) × ... (berhenti di 1 atau 2)</div>
+        <div class="example"><b>Contoh ganjil:</b> 7‼ = 7 × 5 × 3 × 1 = <b>105</b></div>
+        <div class="example"><b>Contoh genap:</b> 8‼ = 8 × 6 × 4 × 2 = <b>384</b></div>
+        <p>Bedanya dengan faktorial biasa: faktorial biasa loncat 1 (kali semua angka), multifaktorial loncat sesuai k (misal loncat 2 untuk double factorial).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LATIHAN ===================== -->
+  <section id="latihan">
+    <div id="quiz-setup" class="card">
+      <h2>Atur Latihan Soal</h2>
+      <div class="row">
+        <div class="select-box">
+          <label>Kategori</label>
+          <select id="qCategory">
+            <option value="perkalian">Perkalian</option>
+            <option value="akar">Akar</option>
+            <option value="faktorial">Faktorial</option>
+          </select>
+        </div>
+        <div class="select-box">
+          <label>Level</label>
+          <select id="qLevel">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="select-box">
+          <label>Jumlah Soal</label>
+          <select id="qCount">
+            <option value="5">5 soal</option>
+            <option value="10">10 soal</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="startBtn">Mulai Latihan 🚀</button>
+    </div>
+
+    <div id="quiz-play" class="card" style="display:none">
+      <div class="quiz-head">
+        <span id="qProgress">Soal 1/5</span>
+        <span class="timer" id="qTimer">0.0s</span>
+      </div>
+      <div class="progress"><div class="progress-bar" id="progBar" style="width:0%"></div></div>
+      <div class="question" id="qText">...</div>
+      <input type="text" id="qAnswer" placeholder="Ketik jawabanmu..." inputmode="numeric" autocomplete="off">
+      <button class="btn" id="submitBtn">Jawab</button>
+      <div id="qFeedback"></div>
+    </div>
+
+    <div id="quiz-result" class="card" style="display:none">
+      <h2 style="text-align:center">Hasil Latihan</h2>
+      <div class="score-big" id="finalScore">0</div>
+      <div class="score-sub">Skor rata-rata (kebenaran + kecepatan)</div>
+      <div class="statgrid">
+        <div class="stat"><b id="statCorrect">0</b>Benar</div>
+        <div class="stat"><b id="statWrong">0</b>Salah</div>
+        <div class="stat"><b id="statTime">0s</b>Total Waktu</div>
+      </div>
+      <div id="resultList"></div>
+      <button class="btn secondary" id="retryBtn">Coba Lagi</button>
+    </div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
