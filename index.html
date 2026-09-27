@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MathTrik - Belajar Matematika Cepat</title>
 <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="https://i.pinimg.com/1200x/98/aa/fd/98aafd7e3fa2483ae301c50d97c6a7a6.jpg"
 </head>
 <body>
 <div class="wrap">
-  <h1>MathTrik</h1>
+  <h1>🧮 MathTrik</h1>
   <p class="sub">Belajar Perkalian, Akar & Faktorial dari dasar sampai trik cepat</p>
 
   <div class="nav">
@@ -145,25 +144,73 @@
     </div>
   </section>
 
-  <!-- ===================== STATISTIK ===================== -->
+  <!-- ===================== STATISTIK / AKUN ===================== -->
   <section id="statistik">
-    <div class="card">
+
+    <div id="auth-gate" class="card">
+      <h2>👤 Login / Daftar Akun</h2>
+      <p style="color:var(--muted);font-size:.9rem">Kamu tetap bisa mengerjakan Latihan Soal tanpa login, tapi Statistik cuma bisa dilihat kalau sudah punya akun dan login.</p>
+      <div class="tabs">
+        <button class="active" data-authtab="login">Login</button>
+        <button data-authtab="register">Daftar Akun</button>
+      </div>
+      <div id="authtab-login">
+        <div class="select-box"><label>Username</label><input type="text" id="loginUsername" autocomplete="username"></div>
+        <div class="select-box"><label>Password</label><input type="password" id="loginPassword" autocomplete="current-password"></div>
+        <button class="btn" id="loginBtn">Login</button>
+        <div class="auth-msg" id="loginMsg"></div>
+      </div>
+      <div id="authtab-register" style="display:none">
+        <div class="select-box"><label>Username</label><input type="text" id="regUsername" autocomplete="username"></div>
+        <div class="select-box"><label>Password (min. 6 karakter)</label><input type="password" id="regPassword" autocomplete="new-password"></div>
+        <button class="btn" id="registerBtn">Buat Akun</button>
+        <div class="auth-msg" id="registerMsg"></div>
+      </div>
+    </div>
+
+    <div id="account-panel" class="card" style="display:none">
+      <h2>👤 Akun Kamu</h2>
+      <p>Login sebagai: <b id="currentUsername">-</b></p>
+      <button class="btn secondary" id="logoutBtn">Logout</button>
+
+      <h3 style="margin-top:20px">Ganti Username</h3>
+      <div class="select-box"><label>Username Baru</label><input type="text" id="newUsername"></div>
+      <div class="select-box"><label>Password Saat Ini (konfirmasi)</label><input type="password" id="confirmPassUsername"></div>
+      <button class="btn secondary" id="changeUsernameBtn">Ganti Username</button>
+      <div class="auth-msg" id="changeUsernameMsg"></div>
+
+      <h3 style="margin-top:20px">Ganti Password</h3>
+      <div class="select-box"><label>Password Baru (min. 6 karakter)</label><input type="password" id="newPassword"></div>
+      <div class="select-box"><label>Password Saat Ini (konfirmasi)</label><input type="password" id="confirmPassPassword"></div>
+      <button class="btn secondary" id="changePasswordBtn">Ganti Password</button>
+      <div class="auth-msg" id="changePasswordMsg"></div>
+    </div>
+
+    <div id="stats-panel" class="card" style="display:none">
       <h2>📊 Statistik Belajar Kamu</h2>
-      <p style="color:var(--muted);font-size:.9rem">Data disimpan lokal di browser ini (localStorage), berdasarkan hasil Latihan Soal yang sudah kamu kerjakan.</p>
+      <p style="color:var(--muted);font-size:.9rem">Data ke-sync ke akun kamu, bisa dilihat dari device manapun selama login.</p>
       <div id="statsGrid" class="stats-grid"></div>
       <button class="btn secondary" id="resetStatsBtn">🗑️ Reset Statistik</button>
     </div>
+
   </section>
 </div>
 <div id="confetti-layer"></div>
 <footer class="site-footer">
   <span>Credit: <b>Yoga</b></span>
-  <span>Version: <b>1</b></span>
+  <span>Version: <b>2</b></span>
   <span>Last Updated: <b>27/09/26</b></span>
   <span>Made at: <b>26/09/26</b></span>
 </footer>
 
+<!-- Firebase SDK (compat, gampang dipakai tanpa build tools) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase-config.js"></script>
 <script src="tricks-data.js"></script>
 <script src="script.js"></script>
+<script src="auth.js"></script>
 </body>
 </html>

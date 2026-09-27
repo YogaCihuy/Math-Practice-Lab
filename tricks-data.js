@@ -24,19 +24,6 @@ const TRICKS_DATA = {
         "5 × 9 = (5 × 10) − 5 = 50 − 5 = 45",
         "8 × 9 = (8 × 10) − 8 = 80 − 8 = 72"
       ]
-    },
-        // Tambah trik perkalian lain di sini, contoh:
-    {
-      title: "Perkalian 4",
-      description: "Cara cepat kalikan angka berapapun dengan 4 tanpa hafalan.",
-      trick: "N x 4 = N x 2 x 2",
-      examples: ["4 x 4 = 4 x 2 = 8 x 2 = 16"]
-    },
-    {
-      title: "Perkalian 5",
-      description: "Cara cepat kalikan angka berapapun dengan 5 tanpa hafalan.",
-      trick: "N x 5 = N x 10 : 2",
-      examples: ["7 x 5 = 7 x 10 = 70 : 2 = 35"]
     }
     // Tambah trik perkalian lain di sini, contoh:
     // {

@@ -69,76 +69,6 @@ function launchConfetti(){
   }
 }
 
-// ---------- STATISTIK LOKAL (localStorage) ----------
-const STATS_KEY='mathtrik_stats_v1';
-const STAT_CATS=[
-  {id:'perkalian',label:'Perkalian',icon:'✖️'},
-  {id:'pembagian',label:'Pembagian',icon:'➗'},
-  {id:'pangkat',label:'Pangkat',icon:'🔺'},
-  {id:'akar',label:'Akar',icon:'√'},
-  {id:'faktorial',label:'Faktorial',icon:'❗'}
-];
-function loadStats(){
-  try{
-    const raw=localStorage.getItem(STATS_KEY);
-    return raw?JSON.parse(raw):{};
-  }catch(e){ return {}; }
-}
-function saveStats(stats){
-  try{ localStorage.setItem(STATS_KEY, JSON.stringify(stats)); }catch(e){}
-}
-function updateStats(cat, results){
-  const stats=loadStats();
-  if(!stats[cat]) stats[cat]={count:0, correct:0, totalScore:0};
-  results.forEach(r=>{
-    stats[cat].count++;
-    if(r.correct) stats[cat].correct++;
-    stats[cat].totalScore+=r.score;
-  });
-  saveStats(stats);
-}
-function classify(avg,count){
-  if(count===0) return {label:'Belum ada data', cls:'kosong'};
-  if(count<5) return {label:'Data Kurang, Latihan Lagi 🔍', cls:'kosong'};
-
-  // Tentukan tingkat dasar dari rata-rata nilai
-  let tier;
-  if(avg>=80) tier={label:'Jago / Cerdas 🏆', cls:'jago'};
-  else if(avg>=50) tier={label:'Lumayan 👍', cls:'lumayan'};
-  else tier={label:'Butuh Belajar 📚', cls:'belajar'};
-
-  // Kalau nilai masih rendah TAPI udah ngerjain SANGAT banyak soal,
-  // itu jadi bahan pertimbangan (kayak emak yang gak langsung marah
-  // liat anaknya udah ngerjain ribuan soal walau nilai belum bagus).
-  if(avg<50){
-    if(count>=500) tier={label:'Butuh Belajar, tapi Rajin Banget 💪🔥', cls:'lumayan'};
-    else if(count>=100) tier={label:'Butuh Belajar, tapi Udah Rajin Latihan 💪', cls:'lumayan'};
-  }
-  return tier;
-}
-function renderStats(){
-  const stats=loadStats();
-  const grid=document.getElementById('statsGrid');
-  grid.innerHTML='';
-  STAT_CATS.forEach(c=>{
-    const s=stats[c.id]||{count:0,correct:0,totalScore:0};
-    const avg=s.count>0?Math.round(s.totalScore/s.count):0;
-    const info=classify(avg,s.count);
-    const div=document.createElement('div');
-    div.className='stat-card';
-    div.innerHTML=`<h4>${c.icon} ${c.label}</h4>
-      <div class="avg">${s.count>0?avg:'-'}</div>
-      <div class="detail">${s.count} soal dikerjakan • ${s.correct} benar</div>
-      <span class="badge ${info.cls}">${info.label}</span>`;
-    grid.appendChild(div);
-  });
-}
-document.getElementById('resetStatsBtn').onclick=()=>{
-  sfx.click();
-  localStorage.removeItem(STATS_KEY);
-  renderStats();
-};
-
 // ---------- NAVIGATION ----------
 document.querySelectorAll('.nav button[data-nav]').forEach(btn=>{
   btn.onclick=()=>{
@@ -147,7 +77,7 @@ document.querySelectorAll('.nav button[data-nav]').forEach(btn=>{
     btn.classList.add('active');
     document.querySelectorAll('.wrap > section').forEach(s=>s.classList.remove('active'));
     document.getElementById(btn.dataset.nav).classList.add('active');
-    if(btn.dataset.nav==='statistik') renderStats();
+    if(btn.dataset.nav==='statistik' && typeof renderStatsCloud==='function') renderStatsCloud();
   };
 });
 document.querySelectorAll('.tabs button').forEach(btn=>{
@@ -303,6 +233,7 @@ function showQuestion(){
   qTextEl.classList.remove('pop'); void qTextEl.offsetWidth; qTextEl.classList.add('pop');
   document.getElementById('qAnswer').value='';
   document.getElementById('qAnswer').disabled=false;
+  document.getElementById('qAnswer').readOnly=false;
   document.getElementById('qAnswer').classList.remove('shake','good-pulse');
   document.getElementById('qFeedback').innerHTML='';
   document.getElementById('submitBtn').style.display='inline-block';
@@ -337,7 +268,7 @@ function submitAnswer(){
 
   const fb=document.getElementById('qFeedback');
   const answerEl=document.getElementById('qAnswer');
-  answerEl.disabled=true;
+  answerEl.readOnly=true;
   if(correct){
     sfx.correct();
     answerEl.classList.add('good-pulse');
@@ -365,7 +296,7 @@ document.getElementById('qAnswer').addEventListener('input',function(){
 function showResult(){
   sfx.finish();
   const s=quizState;
-  updateStats(s.cat, s.results);
+  if(typeof updateStatsCloud==='function') updateStatsCloud(s.cat, s.results);
   document.getElementById('quiz-play').style.display='none';
   document.getElementById('quiz-result').style.display='block';
   const totalScore=Math.round(s.results.reduce((a,r)=>a+r.score,0)/s.count);

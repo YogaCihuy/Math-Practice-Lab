@@ -82,6 +82,10 @@ select,input[type=text],input[type=number]{width:100%;padding:10px 12px;border-r
 .trick-card .formula{white-space:pre-line;}
 .site-footer{max-width:900px;margin:20px auto 10px;padding:16px;border-top:1px solid #262a4a;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;color:var(--muted);font-size:.8rem;}
 .site-footer b{color:var(--text);}
+.auth-msg{margin-top:8px;font-size:.85rem;min-height:1.2em;}
+.auth-msg.err{color:var(--bad);}
+.auth-msg.ok{color:var(--good);}
+#account-panel h3{color:#c9c3ff;font-size:.95rem;border-top:1px solid #262a4a;padding-top:14px;}
 #confetti-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:999;}
 .confetti-piece{position:absolute;top:-20px;font-size:1.4rem;animation:confettiFall linear forwards;}
 @keyframes confettiFall{
