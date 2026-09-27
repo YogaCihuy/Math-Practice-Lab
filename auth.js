@@ -104,17 +104,28 @@ document.getElementById('changePasswordBtn').onclick=async()=>{
 };
 
 // ---------- STATISTIK CLOUD ----------
-async function updateStatsCloud(cat,results){
+const LEVEL_MULTIPLIER={easy:1, medium:2, hard:3};
+const EMPTY_CAT_STATS=()=>({
+  count:0, correct:0, totalScore:0, nilaiLain:0,
+  byLevel:{ easy:{count:0,correct:0}, medium:{count:0,correct:0}, hard:{count:0,correct:0} }
+});
+async function updateStatsCloud(cat,level,results){
   const user=auth.currentUser;
   if(!user) return; // gak login -> statistik gak disimpen
   const ref=db.collection('stats').doc(user.uid);
   const doc=await ref.get();
   const data=doc.exists?doc.data():{};
-  if(!data[cat]) data[cat]={count:0,correct:0,totalScore:0};
+  if(!data[cat]) data[cat]=EMPTY_CAT_STATS();
+  if(!data[cat].byLevel) data[cat].byLevel=EMPTY_CAT_STATS().byLevel; // migrasi data lama
+  if(data[cat].nilaiLain===undefined) data[cat].nilaiLain=0;
+  const mult=LEVEL_MULTIPLIER[level]||1;
   results.forEach(r=>{
     data[cat].count++;
     if(r.correct) data[cat].correct++;
     data[cat].totalScore+=r.score;
+    data[cat].nilaiLain+=r.score*mult;
+    data[cat].byLevel[level].count++;
+    if(r.correct) data[cat].byLevel[level].correct++;
   });
   await ref.set(data,{merge:true});
 }
@@ -138,7 +149,8 @@ async function renderStatsCloud(){
   const grid=document.getElementById('statsGrid');
   grid.innerHTML='';
   STAT_CATS.forEach(c=>{
-    const s=data[c.id]||{count:0,correct:0,totalScore:0};
+    const s=data[c.id]||EMPTY_CAT_STATS();
+    const bl=s.byLevel||EMPTY_CAT_STATS().byLevel;
     const avg=s.count>0?Math.round(s.totalScore/s.count):0;
     const info=classify(avg,s.count);
     const div=document.createElement('div');
@@ -146,7 +158,21 @@ async function renderStatsCloud(){
     div.innerHTML=`<h4>${c.icon} ${c.label}</h4>
       <div class="avg">${s.count>0?avg:'-'}</div>
       <div class="detail">${s.count} soal dikerjakan • ${s.correct} benar</div>
-      <span class="badge ${info.cls}">${info.label}</span>`;
+      <span class="badge ${info.cls}">${info.label}</span>
+      <button type="button" class="btn secondary detail-toggle">Lihat Detail ▾</button>
+      <div class="stat-detail" style="display:none">
+        <div class="level-row"><span>🟢 Easy</span><span>${bl.easy.count} soal • ${bl.easy.correct} benar</span></div>
+        <div class="level-row"><span>🟡 Medium</span><span>${bl.medium.count} soal • ${bl.medium.correct} benar</span></div>
+        <div class="level-row"><span>🔴 Hard</span><span>${bl.hard.count} soal • ${bl.hard.correct} benar</span></div>
+        <div class="nilai-lain">🔥 Nilai Lain (XP): <b>${s.nilaiLain||0}</b></div>
+      </div>`;
+    const toggleBtn=div.querySelector('.detail-toggle');
+    const detailDiv=div.querySelector('.stat-detail');
+    toggleBtn.onclick=()=>{
+      const showing=detailDiv.style.display==='block';
+      detailDiv.style.display=showing?'none':'block';
+      toggleBtn.textContent=showing?'Lihat Detail ▾':'Tutup Detail ▴';
+    };
     grid.appendChild(div);
   });
 }

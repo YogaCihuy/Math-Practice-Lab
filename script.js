@@ -209,13 +209,24 @@ function genQuestion(cat,level){
 let quizState={};
 const timeLimitByLevel={easy:15,medium:20,hard:30};
 
+function genUniqueQuestion(cat,level,usedSet){
+  let q, tries=0;
+  do{
+    q=genQuestion(cat,level);
+    tries++;
+  } while(usedSet.has(q.q) && tries<100);
+  usedSet.add(q.q);
+  return q;
+}
+
 document.getElementById('startBtn').onclick=()=>{
   sfx.start();
   const cat=document.getElementById('qCategory').value;
   const level=document.getElementById('qLevel').value;
   const count=parseInt(document.getElementById('qCount').value);
   const questions=[];
-  for(let i=0;i<count;i++) questions.push(genQuestion(cat,level));
+  const usedSet=new Set(); // soal yang sudah keluar di sesi latihan ini, gak boleh dobel
+  for(let i=0;i<count;i++) questions.push(genUniqueQuestion(cat,level,usedSet));
   quizState={cat,level,count,questions,idx:0,results:[],startTime:0,timerInt:null,answered:false};
   document.getElementById('quiz-setup').style.display='none';
   document.getElementById('quiz-result').style.display='none';
@@ -296,7 +307,7 @@ document.getElementById('qAnswer').addEventListener('input',function(){
 function showResult(){
   sfx.finish();
   const s=quizState;
-  if(typeof updateStatsCloud==='function') updateStatsCloud(s.cat, s.results);
+  if(typeof updateStatsCloud==='function') updateStatsCloud(s.cat, s.level, s.results);
   document.getElementById('quiz-play').style.display='none';
   document.getElementById('quiz-result').style.display='block';
   const totalScore=Math.round(s.results.reduce((a,r)=>a+r.score,0)/s.count);

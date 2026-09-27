@@ -79,6 +79,11 @@ select,input[type=text],input[type=number]{width:100%;padding:10px 12px;border-r
 .badge.lumayan{background:rgba(240,179,79,.18);color:var(--warn);}
 .badge.belajar{background:rgba(240,97,108,.18);color:var(--bad);}
 .badge.kosong{background:rgba(154,158,194,.15);color:var(--muted);}
+.detail-toggle{width:100%;margin-top:10px !important;padding:8px 10px !important;font-size:.8rem !important;}
+.stat-detail{margin-top:10px;padding-top:10px;border-top:1px solid #2c3055;}
+.level-row{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);padding:3px 0;}
+.nilai-lain{margin-top:8px;padding-top:8px;border-top:1px dashed #2c3055;font-size:.85rem;color:var(--warn);}
+.nilai-lain b{font-size:1.1rem;}
 .trick-card .formula{white-space:pre-line;}
 .site-footer{max-width:900px;margin:20px auto 10px;padding:16px;border-top:1px solid #262a4a;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;color:var(--muted);font-size:.8rem;}
 .site-footer b{color:var(--text);}

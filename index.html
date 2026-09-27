@@ -168,6 +168,13 @@
       </div>
     </div>
 
+    <div id="stats-panel" class="card" style="display:none">
+      <h2>📊 Statistik Belajar Kamu</h2>
+      <p style="color:var(--muted);font-size:.9rem">Data ke-sync ke akun kamu, bisa dilihat dari device manapun selama login.</p>
+      <div id="statsGrid" class="stats-grid"></div>
+      <button class="btn secondary" id="resetStatsBtn">🗑️ Reset Statistik</button>
+    </div>
+
     <div id="account-panel" class="card" style="display:none">
       <h2>👤 Akun Kamu</h2>
       <p>Login sebagai: <b id="currentUsername">-</b></p>
@@ -184,13 +191,6 @@
       <div class="select-box"><label>Password Saat Ini (konfirmasi)</label><input type="password" id="confirmPassPassword"></div>
       <button class="btn secondary" id="changePasswordBtn">Ganti Password</button>
       <div class="auth-msg" id="changePasswordMsg"></div>
-    </div>
-
-    <div id="stats-panel" class="card" style="display:none">
-      <h2>📊 Statistik Belajar Kamu</h2>
-      <p style="color:var(--muted);font-size:.9rem">Data ke-sync ke akun kamu, bisa dilihat dari device manapun selama login.</p>
-      <div id="statsGrid" class="stats-grid"></div>
-      <button class="btn secondary" id="resetStatsBtn">🗑️ Reset Statistik</button>
     </div>
 
   </section>
