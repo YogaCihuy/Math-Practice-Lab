@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MathTrik - Belajar Matematika Cepat</title>
 <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="https://i.pinimg.com/1200x/98/aa/fd/98aafd7e3fa2483ae301c50d97c6a7a6.jpg"
 </head>
 <body>
 <div class="wrap">
-  <h1>🧮 MathTrik</h1>
+  <h1>MathTrik</h1>
   <p class="sub">Belajar Perkalian, Akar & Faktorial dari dasar sampai trik cepat</p>
 
   <div class="nav">
@@ -37,14 +38,7 @@
         <div class="example"><b>Contoh lain:</b> 7 × 2 = 7 + 7 = 14</div>
         <p>Konsep ini penting supaya kamu paham <i>kenapa</i> tabel perkalian bisa terbentuk, bukan cuma hafalan.</p>
       </div>
-      <div class="card">
-        <h2>Trik: Perkalian dengan 9</h2>
-        <p>Untuk A × 9, gunakan rumus:</p>
-        <div class="formula">A × 9 = (A × 10) − A</div>
-        <div class="example"><b>Contoh:</b> 5 × 9 = (5 × 10) − 5 = 50 − 5 = <b>45</b></div>
-        <div class="example"><b>Contoh:</b> 8 × 9 = (8 × 10) − 8 = 80 − 8 = <b>72</b></div>
-        <p>Trik ini cepat karena kali 10 tinggal tambah angka 0 di belakang.</p>
-      </div>
+      <div id="tricks-perkalian"></div>
     </div>
 
     <div id="tab-pembagian" class="tab-content" style="display:none">
@@ -55,20 +49,7 @@
         <div class="example"><b>Pengurangan berulang:</b> 20 − 4 − 4 − 4 − 4 − 4 = 0 (dikurangi 5 kali) → 20 ÷ 4 = 5</div>
         <p>Cara cek jawaban pembagian: kalikan lagi hasilnya dengan pembaginya, hasilnya harus balik ke angka awal.</p>
       </div>
-      <div class="card">
-        <h2>Trik 1: Bagi 5</h2>
-        <p>Untuk N ÷ 5, kalikan dulu N dengan 2, lalu bagi 10 (geser koma / hapus satu angka nol):</p>
-        <div class="formula">N ÷ 5 = (N × 2) ÷ 10</div>
-        <div class="example"><b>Contoh:</b> 65 ÷ 5 → 65 × 2 = 130 → 130 ÷ 10 = <b>13</b></div>
-        <div class="example"><b>Contoh:</b> 240 ÷ 5 → 240 × 2 = 480 → 480 ÷ 10 = <b>48</b></div>
-      </div>
-      <div class="card">
-        <h2>Trik 2: Bagi 4</h2>
-        <p>Bagi 4 sama saja dengan bagi 2 dua kali berturut-turut (lebih gampang secara mental):</p>
-        <div class="formula">N ÷ 4 = (N ÷ 2) ÷ 2</div>
-        <div class="example"><b>Contoh:</b> 48 ÷ 4 → 48 ÷ 2 = 24 → 24 ÷ 2 = <b>12</b></div>
-        <div class="example"><b>Contoh:</b> 132 ÷ 4 → 132 ÷ 2 = 66 → 66 ÷ 2 = <b>33</b></div>
-      </div>
+      <div id="tricks-pembagian"></div>
     </div>
 
     <div id="tab-pangkat" class="tab-content" style="display:none">
@@ -80,14 +61,7 @@
         <div class="example"><b>Contoh lain:</b> 6² = 6 × 6 = 36</div>
         <p>Pangkat 2 disebut <i>kuadrat</i>, pangkat 3 disebut <i>kubik/pangkat tiga</i>.</p>
       </div>
-      <div class="card">
-        <h2>Trik: Kuadrat Angka Berakhiran 5</h2>
-        <p>Untuk angka berbentuk A5 (puluhan A, satuan 5), rumus kuadratnya:</p>
-        <div class="formula">A5² = [A × (A+1)] lalu tempel "25" di belakang</div>
-        <div class="example"><b>Contoh:</b> 25² → A=2 → 2 × 3 = 6 → tempel 25 → <b>625</b></div>
-        <div class="example"><b>Contoh:</b> 45² → A=4 → 4 × 5 = 20 → tempel 25 → <b>2025</b></div>
-        <div class="example"><b>Contoh:</b> 95² → A=9 → 9 × 10 = 90 → tempel 25 → <b>9025</b></div>
-      </div>
+      <div id="tricks-pangkat"></div>
     </div>
 
     <div id="tab-akar" class="tab-content" style="display:none">
@@ -95,14 +69,8 @@
         <h2>Akar Kuadrat (√)</h2>
         <p>Akar kuadrat dari N adalah angka yang jika dikalikan dengan dirinya sendiri menghasilkan N.</p>
         <div class="formula">√25 = 5, karena 5 × 5 = 25</div>
-        <h3>Trik Tebak Cepat Akar</h3>
-        <p>Hafalkan kuadrat 1–15, lalu lihat digit terakhir untuk menebak digit terakhir hasil akar:</p>
-        <div class="example">Angka berakhiran <b>1</b> → akarnya berakhiran 1 atau 9</div>
-        <div class="example">Angka berakhiran <b>4</b> → akarnya berakhiran 2 atau 8</div>
-        <div class="example">Angka berakhiran <b>9</b> → akarnya berakhiran 3 atau 7</div>
-        <div class="example">Angka berakhiran <b>6</b> → akarnya berakhiran 4 atau 6</div>
-        <div class="example">Angka berakhiran <b>5</b> → akarnya pasti berakhiran 5 (pakai trik kuadrat A5 secara terbalik!)</div>
       </div>
+      <div id="tricks-akar"></div>
     </div>
 
     <div id="tab-faktorial" class="tab-content" style="display:none">
@@ -112,13 +80,8 @@
         <div class="formula">n! = n × (n−1) × (n−2) × ... × 1</div>
         <div class="example"><b>Contoh:</b> 5! = 5 × 4 × 3 × 2 × 1 = <b>120</b></div>
         <div class="example"><b>Catatan:</b> 0! = 1 (kesepakatan matematika)</div>
-        <h3>Multifaktorial (n‼ dan seterusnya)</h3>
-        <p>Multifaktorial mengalikan angka dengan <i>loncat</i> sebanyak k langkah, ditulis n!ᵏ. Bentuk paling umum adalah double factorial (n‼), yaitu loncat 2:</p>
-        <div class="formula">n‼ = n × (n−2) × (n−4) × ... (berhenti di 1 atau 2)</div>
-        <div class="example"><b>Contoh ganjil:</b> 7‼ = 7 × 5 × 3 × 1 = <b>105</b></div>
-        <div class="example"><b>Contoh genap:</b> 8‼ = 8 × 6 × 4 × 2 = <b>384</b></div>
-        <p>Bedanya dengan faktorial biasa: faktorial biasa loncat 1 (kali semua angka), multifaktorial loncat sesuai k (misal loncat 2 untuk double factorial).</p>
       </div>
+      <div id="tricks-faktorial"></div>
     </div>
   </section>
 
@@ -163,7 +126,7 @@
       </div>
       <div class="progress"><div class="progress-bar" id="progBar" style="width:0%"></div></div>
       <div class="question" id="qText">...</div>
-      <input type="text" id="qAnswer" placeholder="Ketik jawabanmu..." inputmode="numeric" autocomplete="off">
+      <input type="text" id="qAnswer" placeholder="Ketik jawabanmu..." inputmode="numeric" pattern="[0-9]*" autocomplete="off">
       <button class="btn" id="submitBtn">Jawab</button>
       <div id="qFeedback"></div>
     </div>
@@ -193,7 +156,14 @@
   </section>
 </div>
 <div id="confetti-layer"></div>
+<footer class="site-footer">
+  <span>Credit: <b>Yoga</b></span>
+  <span>Version: <b>1</b></span>
+  <span>Last Updated: <b>27/09/26</b></span>
+  <span>Made at: <b>26/09/26</b></span>
+</footer>
 
+<script src="tricks-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

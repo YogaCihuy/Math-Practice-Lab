@@ -1,3 +1,25 @@
+// ---------- RENDER TRIK DARI DATA (tricks-data.js) ----------
+function renderTrickCard(t,idx,total){
+  const examplesHtml=(t.examples||[]).map(ex=>`<div class="example"><b>Contoh:</b> ${ex}</div>`).join('');
+  const numbering=total>1?`Trik ${idx+1}: `:'';
+  return `<div class="card trick-card">
+    <h2>💡 ${numbering}${t.title}</h2>
+    <p>${t.description}</p>
+    <div class="formula">${t.trick}</div>
+    ${examplesHtml}
+  </div>`;
+}
+function renderAllTricks(){
+  if(typeof TRICKS_DATA==='undefined') return;
+  Object.keys(TRICKS_DATA).forEach(cat=>{
+    const container=document.getElementById('tricks-'+cat);
+    if(!container) return;
+    const list=TRICKS_DATA[cat];
+    container.innerHTML=list.map((t,i)=>renderTrickCard(t,i,list.length)).join('');
+  });
+}
+renderAllTricks();
+
 // ---------- SOUND EFFECTS (Web Audio API, tanpa file eksternal) ----------
 let soundOn=true;
 let audioCtx=null;
@@ -77,9 +99,22 @@ function updateStats(cat, results){
 }
 function classify(avg,count){
   if(count===0) return {label:'Belum ada data', cls:'kosong'};
-  if(avg>=80) return {label:'Jago / Cerdas 🏆', cls:'jago'};
-  if(avg>=50) return {label:'Lumayan 👍', cls:'lumayan'};
-  return {label:'Butuh Belajar 📚', cls:'belajar'};
+  if(count<5) return {label:'Data Kurang, Latihan Lagi 🔍', cls:'kosong'};
+
+  // Tentukan tingkat dasar dari rata-rata nilai
+  let tier;
+  if(avg>=80) tier={label:'Jago / Cerdas 🏆', cls:'jago'};
+  else if(avg>=50) tier={label:'Lumayan 👍', cls:'lumayan'};
+  else tier={label:'Butuh Belajar 📚', cls:'belajar'};
+
+  // Kalau nilai masih rendah TAPI udah ngerjain SANGAT banyak soal,
+  // itu jadi bahan pertimbangan (kayak emak yang gak langsung marah
+  // liat anaknya udah ngerjain ribuan soal walau nilai belum bagus).
+  if(avg<50){
+    if(count>=500) tier={label:'Butuh Belajar, tapi Rajin Banget 💪🔥', cls:'lumayan'};
+    else if(count>=100) tier={label:'Butuh Belajar, tapi Udah Rajin Latihan 💪', cls:'lumayan'};
+  }
+  return tier;
 }
 function renderStats(){
   const stats=loadStats();
@@ -291,11 +326,13 @@ function submitAnswer(){
   const timeTaken=(performance.now()-s.startTime)/1000;
   const q=s.questions[s.idx];
   const userVal=document.getElementById('qAnswer').value.trim();
-  const correct=parseFloat(userVal)===q.ans;
+  const correct=parseInt(userVal,10)===q.ans;
   const limit=timeLimitByLevel[s.level];
-  const speedScore=Math.max(0,Math.min(30,((limit-timeTaken)/limit)*30));
+  let speedScore;
+  if(timeTaken<=3){ speedScore=30; }
+  else{ speedScore=Math.max(0, 30*(limit-timeTaken)/(limit-3)); }
   const correctScore=correct?70:0;
-  const score=Math.round(correctScore+(correct?speedScore:0));
+  const score=correct?Math.round(correctScore+speedScore):0;
   s.results.push({q:q.q, userVal:userVal||'(kosong)', correctAns:q.ans, correct, timeTaken, score, expl:q.expl});
 
   const fb=document.getElementById('qFeedback');
@@ -321,6 +358,9 @@ function nextQuestion(){
 
 document.getElementById('submitBtn').onclick=submitAnswer;
 document.getElementById('qAnswer').addEventListener('keydown',e=>{ if(e.key==='Enter') submitAnswer(); });
+document.getElementById('qAnswer').addEventListener('input',function(){
+  this.value=this.value.replace(/[^0-9]/g,'');
+});
 
 function showResult(){
   sfx.finish();
